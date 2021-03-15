@@ -1,29 +1,52 @@
-import {Command, flags} from '@oclif/command'
+import { existsSync, readFileSync } from "fs";
+import { resolve } from "path";
+import { Command, flags } from "@oclif/command";
 
-class 2Pre extends Command {
-  static description = 'describe the command here'
+class _2Pre extends Command {
+  static description = "describe the command here";
 
   static flags = {
-    // add --version flag to show CLI version
-    version: flags.version({char: 'v'}),
-    help: flags.help({char: 'h'}),
-    // flag with a value (-n, --name=VALUE)
-    name: flags.string({char: 'n', description: 'name to print'}),
-    // flag with no value (-f, --force)
-    force: flags.boolean({char: 'f'}),
+    version: flags.version({ char: "v" }),
+    help: flags.help({ char: "h" }),
+    tabsize: flags.integer({
+      char: "t",
+      required: false,
+      default: 2,
+      description: "tab size",
+    }),
+  };
+
+  static args = [
+    {
+      name: "file",
+      required: true,
+      description: "file to convert",
+      parse: (input: string) => resolve(input),
+    },
+  ];
+
+  static convertCode(code: string, flags: Record<string, unknown>) {
+    const lines = code.split("\n");
+    const replaceSpace = `\\s{${flags.tabsize}}`;
+    console.log({ replaceSpace }); // eslint-disable-line no-console
+    const spaceRegex = new RegExp(replaceSpace, "g");
+    const convertedLines = lines.map((line) =>
+      line.replace(/^\t/, "&nbsp;").replace(spaceRegex, "&nbsp;")
+    );
+    return `<pre>${convertedLines.join("<br/>")}</pre>`;
   }
 
-  static args = [{name: 'file'}]
-
   async run() {
-    const {args, flags} = this.parse(2Pre)
-
-    const name = flags.name ?? 'world'
-    this.log(`hello ${name} from ./src/index.ts`)
-    if (args.file && flags.force) {
-      this.log(`you input --force and --file: ${args.file}`)
+    const { flags, args } = this.parse(_2Pre);
+    this.log("file: ", args.file); // eslint-disable-line no-console
+    if (!existsSync(args.file)) {
+      throw new Error("Please provide valid file path");
     }
+    const code = readFileSync(args.file).toString();
+    this.log(code);
+    const converted = _2Pre.convertCode(code, flags);
+    this.log(converted);
   }
 }
 
-export = 2Pre
+export = _2Pre;
