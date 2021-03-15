@@ -28,7 +28,6 @@ class _2Pre extends Command {
   static convertCode(code: string, flags: Record<string, unknown>) {
     const lines = code.split("\n");
     const replaceSpace = `\\s{${flags.tabsize}}`;
-    console.log({ replaceSpace }); // eslint-disable-line no-console
     const spaceRegex = new RegExp(replaceSpace, "g");
     const convertedLines = lines.map((line) =>
       line.replace(/^\t/, "&nbsp;").replace(spaceRegex, "&nbsp;")
@@ -38,7 +37,6 @@ class _2Pre extends Command {
 
   async run() {
     const { flags, args } = this.parse(_2Pre);
-    this.log("file: ", args.file); // eslint-disable-line no-console
     if (!existsSync(args.file)) {
       throw new Error("Please provide valid file path");
     }
