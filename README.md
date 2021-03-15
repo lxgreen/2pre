@@ -49,4 +49,4 @@ $ 2pre ./test/test.js
     this.log(converted);
   }
 
-&lt;pre&gt;&amp;nbsp;async run() {&lt;br/&gt;&amp;nbsp;&amp;nbsp;const { args } = this.parse(_2Pre);&lt;br/&gt;&amp;nbsp;&amp;nbsp;if (!existsSync(args.file)) {&lt;br/&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;throw new Error(“Please provide valid file path”);&lt;br/&gt;  }&lt;br/&gt;&amp;nbsp;&amp;nbsp;const code = readFileSync(args.file).toString();&lt;br/&gt;&amp;nbsp;&amp;nbsp;this.log(code);&lt;br/&gt;&amp;nbsp;&amp;nbsp;const converted = _2Pre.convertCode(code);&lt;br/&gt;&amp;nbsp;&amp;nbsp;this.log(converted);&lt;br/&gt; }&lt;br/&gt;&lt;/pre&gt;
+<pre>&nbsp;async run() {<br/>&nbsp;&nbsp;const { args } = this.parse(_2Pre);<br/>&nbsp;&nbsp;if (!existsSync(args.file)) {<br/>&nbsp;&nbsp;&nbsp;throw new Error("Please provide valid file path");<br/>&nbsp;&nbsp;}<br/>&nbsp;&nbsp;const code = readFileSync(args.file).toString();<br/>&nbsp;&nbsp;this.log(code);<br/>&nbsp;&nbsp;const converted = _2Pre.convertCode(code);<br/>&nbsp;&nbsp;this.log(converted);<br/>&nbsp;}<br/></pre>
