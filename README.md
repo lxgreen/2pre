@@ -18,17 +18,18 @@ converts a code snippet to md table embeddable &lt;pre&gt; one-liner
 <!-- usage -->
 ```sh-session
 $ npm install -g 2pre
-$ 2pre COMMAND
-running command...
-$ 2pre (-v|--version|version)
-2pre/1.0.0 darwin-x64 node-v12.18.4
-$ 2pre --help [COMMAND]
+
+$ 2pre --help
 USAGE
-  $ 2pre COMMAND
-...
+  $ 2pre FILE
+
+ARGUMENTS
+  FILE  file to convert
+
+OPTIONS
+  -h, --help             show CLI help
+  -t, --tabsize=tabsize  [default: 2] tab size
+  -v, --version          show CLI version
+
 ```
 <!-- usagestop -->
-# Commands
-<!-- commands -->
-
-<!-- commandsstop -->
