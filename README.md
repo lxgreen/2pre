@@ -12,9 +12,9 @@ converts a code snippet to md table embeddable &lt;pre&gt; one-liner
 
 <!-- toc -->
 * [Usage](#usage)
-* [Commands](#commands)
+* [Example](#example)
 <!-- tocstop -->
-# Usage
+## Usage
 <!-- usage -->
 ```sh-session
 $ npm install -g 2pre
@@ -33,3 +33,20 @@ OPTIONS
 
 ```
 <!-- usagestop -->
+
+## Example
+
+```sh-session
+$ 2pre ./test/test.js
+  async run() {
+    const { args } = this.parse(_2Pre);
+    if (!existsSync(args.file)) {
+      throw new Error("Please provide valid file path");
+    }
+    const code = readFileSync(args.file).toString();
+    this.log(code);
+    const converted = _2Pre.convertCode(code);
+    this.log(converted);
+  }
+
+&lt;pre&gt;&amp;nbsp;async run() {&lt;br/&gt;&amp;nbsp;&amp;nbsp;const { args } = this.parse(_2Pre);&lt;br/&gt;&amp;nbsp;&amp;nbsp;if (!existsSync(args.file)) {&lt;br/&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;throw new Error(“Please provide valid file path”);&lt;br/&gt;  }&lt;br/&gt;&amp;nbsp;&amp;nbsp;const code = readFileSync(args.file).toString();&lt;br/&gt;&amp;nbsp;&amp;nbsp;this.log(code);&lt;br/&gt;&amp;nbsp;&amp;nbsp;const converted = _2Pre.convertCode(code);&lt;br/&gt;&amp;nbsp;&amp;nbsp;this.log(converted);&lt;br/&gt; }&lt;br/&gt;&lt;/pre&gt;
